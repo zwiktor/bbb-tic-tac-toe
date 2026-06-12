@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://ulb1vyxc5efd"]
+
+[ext_resource type="Script" uid="uid://cnnmkujj8718m" path="res://scripts/board.gd" id="1_5u3o4"]
+
+[node name="Main scene" type="Control" unique_id=929944705]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 600.0
+script = ExtResource("1_5u3o4")
+
+[node name="MenuContainer" type="Control" parent="." unique_id=26246788]
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 600.0
+
+[node name="TitleLabel" type="Label" parent="MenuContainer" unique_id=3847569]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 350.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 40
+text = "Tic Tac Toe"
+horizontal_alignment = 1
+
+[node name="ModeLabel" type="Label" parent="MenuContainer" unique_id=5832741]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 130.0
+offset_right = 350.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 20
+text = "Game Mode:"
+
+[node name="ModeVsPlayerBtn" type="Button" parent="MenuContainer" unique_id=2948561]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 170.0
+offset_right = 180.0
+offset_bottom = 220.0
+text = "vs Player"
+
+[node name="ModeVsAIBtn" type="Button" parent="MenuContainer" unique_id=5173956]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 170.0
+offset_right = 350.0
+offset_bottom = 220.0
+text = "vs AI"
+
+[node name="SymbolLabel" type="Label" parent="MenuContainer" unique_id=1294837]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 350.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 20
+text = "Choose Symbol:"
+
+[node name="SymbolXBtn" type="Button" parent="MenuContainer" unique_id=3859402]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 290.0
+offset_right = 180.0
+offset_bottom = 340.0
+theme_override_font_sizes/font_size = 24
+text = "X"
+
+[node name="SymbolOBtn" type="Button" parent="MenuContainer" unique_id=4729183]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 290.0
+offset_right = 350.0
+offset_bottom = 340.0
+theme_override_font_sizes/font_size = 24
+text = "O"
+
+[node name="StartBtn" type="Button" parent="MenuContainer" unique_id=6284615]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 420.0
+offset_right = 300.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 24
+text = "Start Game"
+
+[node name="GameContainer" type="Control" parent="." unique_id=443020082]
+visible = false
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 600.0
+
+[node name="StatusLabel" type="Label" parent="GameContainer" unique_id=918491488]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 22.0
+offset_right = 352.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 28
+text = "X's Turn"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="GameContainer" unique_id=1129811130]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 78.0
+offset_right = 355.0
+offset_bottom = 386.0
+columns = 3
+
+[node name="Button" type="Button" parent="GameContainer/GridContainer" unique_id=480887271]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button" unique_id=1589623973]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="GameContainer/GridContainer" unique_id=1191213472]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button2" unique_id=1132417518]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="GameContainer/GridContainer" unique_id=1459478080]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button3" unique_id=348360279]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button4" type="Button" parent="GameContainer/GridContainer" unique_id=1411204669]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button4" unique_id=1236056747]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button5" type="Button" parent="GameContainer/GridContainer" unique_id=507903952]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button5" unique_id=1523079959]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button6" type="Button" parent="GameContainer/GridContainer" unique_id=1871272337]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button6" unique_id=790711008]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button7" type="Button" parent="GameContainer/GridContainer" unique_id=276860037]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button7" unique_id=1853044428]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button8" type="Button" parent="GameContainer/GridContainer" unique_id=593756737]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button8" unique_id=213245958]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button9" type="Button" parent="GameContainer/GridContainer" unique_id=878524233]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameContainer/GridContainer/Button9" unique_id=710550163]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetButton" type="Button" parent="GameContainer" unique_id=1170855359]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 409.0
+offset_right = 299.0
+offset_bottom = 459.0
+theme_override_font_sizes/font_size = 20
+text = "Reset Game"

@@ -6,30 +6,85 @@ var current_player: int = 1  # 1=X, 2=O
 var game_over: bool = false
 var ai_player = preload("res://scripts/ai_player.gd").new()
 
+# Ustawienia gry z menu
+var game_mode: String = "vs_ai"  # "vs_player" lub "vs_ai"
+var player_symbol: int = 1  # 1=X, 2=O (symbol gracza)
+var selected_mode: String = ""
+var selected_symbol: int = 0
+
 func _ready() -> void:
-	# Inicjalizuj planszę
-	reset_game()
+	# Ukryj GameContainer na start (menu vidoczne)
+	get_node("GameContainer").visible = false
 	
-	# Połącz przyciski
+	# Połącz przyciski menu
+	get_node("MenuContainer/ModeVsPlayerBtn").pressed.connect(_on_mode_vs_player)
+	get_node("MenuContainer/ModeVsAIBtn").pressed.connect(_on_mode_vs_ai)
+	get_node("MenuContainer/SymbolXBtn").pressed.connect(_on_symbol_x)
+	get_node("MenuContainer/SymbolOBtn").pressed.connect(_on_symbol_o)
+	get_node("MenuContainer/StartBtn").pressed.connect(_on_start_game)
+	
+	# Połącz przyciski gry (GameContainer)
 	for i in range(3):
 		for j in range(3):
 			var button_index = i * 3 + j
 			var button_name = "Button" if button_index == 0 else "Button%d" % (button_index + 1)
-			var button = get_node("GridContainer/%s" % button_name)
+			var button = get_node("GameContainer/GridContainer/%s" % button_name)
 			button.pressed.connect(_on_button_pressed.bindv([i, j]))
 	
 	# Połącz reset button
-	var reset_btn = get_node("ResetButton")
+	var reset_btn = get_node("GameContainer/ResetButton")
 	reset_btn.pressed.connect(_on_reset_pressed)
+
+# Menu - Wybór trybu vs Player
+func _on_mode_vs_player() -> void:
+	selected_mode = "vs_player"
+	get_node("MenuContainer/ModeVsPlayerBtn").modulate.a = 0.5
+	get_node("MenuContainer/ModeVsAIBtn").modulate.a = 1.0
+
+# Menu - Wybór trybu vs AI
+func _on_mode_vs_ai() -> void:
+	selected_mode = "vs_ai"
+	get_node("MenuContainer/ModeVsAIBtn").modulate.a = 0.5
+	get_node("MenuContainer/ModeVsPlayerBtn").modulate.a = 1.0
+
+# Menu - Wybór symbolu X
+func _on_symbol_x() -> void:
+	selected_symbol = 1
+	get_node("MenuContainer/SymbolXBtn").modulate.a = 0.5
+	get_node("MenuContainer/SymbolOBtn").modulate.a = 1.0
+
+# Menu - Wybór symbolu O
+func _on_symbol_o() -> void:
+	selected_symbol = 2
+	get_node("MenuContainer/SymbolOBtn").modulate.a = 0.5
+	get_node("MenuContainer/SymbolXBtn").modulate.a = 1.0
+
+# Menu - Start gry
+func _on_start_game() -> void:
+	if selected_mode == "" or selected_symbol == 0:
+		return
 	
-	update_ui()
+	game_mode = selected_mode
+	player_symbol = selected_symbol
+	
+	# Ukryj menu, pokaż grę
+	get_node("MenuContainer").visible = false
+	get_node("GameContainer").visible = true
+	
+	# Resetuj i zacznij grę
+	reset_game()
 
 func _process(delta: float) -> void:
 	pass
 
-# Obsługa kliknięcia przycisku
+# Obsługa kliknięcia przycisku gry
 func _on_button_pressed(x: int, y: int) -> void:
 	if game_over:
+		return
+	
+	# W trybie vs_player, gracz może grać jako obecny gracz
+	# W trybie vs_ai, tylko gdy gracz ma swoją turę
+	if game_mode == "vs_ai" and current_player != player_symbol:
 		return
 	
 	if make_move(x, y, current_player):
@@ -39,12 +94,12 @@ func _on_button_pressed(x: int, y: int) -> void:
 		var winner = get_winner()
 		if winner != 0:
 			game_over = true
-			get_node("StatusLabel").text = "Player %s WINS!" % ("X" if winner == 1 else "O")
+			get_node("GameContainer/StatusLabel").text = "Player %s WINS!" % ("X" if winner == 1 else "O")
 			return
 		
 		if is_draw():
 			game_over = true
-			get_node("StatusLabel").text = "It's a DRAW!"
+			get_node("GameContainer/StatusLabel").text = "It's a DRAW!"
 			return
 		
 		# Zmiana gracza
@@ -52,8 +107,8 @@ func _on_button_pressed(x: int, y: int) -> void:
 		update_ui()
 		
 		# Jeśli AI ma zagrać
-		if current_player == 2:
-			await get_tree().create_timer(1).timeout
+		if game_mode == "vs_ai" and current_player != player_symbol:
+			await get_tree().create_timer(0.5).timeout
 			_ai_make_move()
 
 # AI wykonuje ruch
@@ -76,16 +131,16 @@ func _ai_make_move() -> void:
 		var winner = get_winner()
 		if winner != 0:
 			game_over = true
-			get_node("StatusLabel").text = "Player %s WINS!" % ("X" if winner == 1 else "O")
+			get_node("GameContainer/StatusLabel").text = "Player %s WINS!" % ("X" if winner == 1 else "O")
 			return
 		
 		if is_draw():
 			game_over = true
-			get_node("StatusLabel").text = "It's a DRAW!"
+			get_node("GameContainer/StatusLabel").text = "It's a DRAW!"
 			return
 		
 		# Zmiana gracza
-		current_player = 1
+		current_player = 2 if current_player == 1 else 1
 		update_ui()
 
 # Obsługa reset buttona
@@ -103,22 +158,26 @@ func reset_game() -> void:
 		for j in range(3):
 			var button_index = i * 3 + j
 			var button_name = "Button" if button_index == 0 else "Button%d" % (button_index + 1)
-			var button = get_node("GridContainer/%s" % button_name)
+			var button = get_node("GameContainer/GridContainer/%s" % button_name)
 			if button.has_node("Label"):
 				button.get_node("Label").text = ""
 	
 	update_ui()
+	
+	# Jeśli AI zaczyna (gracz wybrał O)
+	if game_mode == "vs_ai" and player_symbol == 2:
+		_ai_make_move()
 
 # Aktualizuj UI
 func update_ui() -> void:
 	if not game_over:
-		get_node("StatusLabel").text = "Player %s Turn" % ("X" if current_player == 1 else "O")
+		get_node("GameContainer/StatusLabel").text = "Player %s Turn" % ("X" if current_player == 1 else "O")
 
 # Aktualizuj label przycisku
 func update_button_ui(x: int, y: int) -> void:
 	var button_index = x * 3 + y
 	var button_name = "Button" if button_index == 0 else "Button%d" % (button_index + 1)
-	var button = get_node("GridContainer/%s" % button_name)
+	var button = get_node("GameContainer/GridContainer/%s" % button_name)
 	var symbol = "X" if board[x][y] == 1 else "O"
 	if button.has_node("Label"):
 		button.get_node("Label").text = symbol
