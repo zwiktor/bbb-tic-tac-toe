@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kołko i Krzyżyk"
-run/main_scene="uid://cw2otbexxx1ns"
+run/main_scene="uid://ulb1vyxc5efd"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
