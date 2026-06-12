@@ -4,6 +4,7 @@ extends Node
 var board: Array[Array] = []
 var current_player: int = 1  # 1=X, 2=O
 var game_over: bool = false
+var ai_player = preload("res://scripts/ai_player.gd").new()
 
 func _ready() -> void:
 	# Inicjalizuj planszę
@@ -48,6 +49,43 @@ func _on_button_pressed(x: int, y: int) -> void:
 		
 		# Zmiana gracza
 		current_player = 2 if current_player == 1 else 1
+		update_ui()
+		
+		# Jeśli AI ma zagrać
+		if current_player == 2:
+			await get_tree().create_timer(1).timeout
+			_ai_make_move()
+
+# AI wykonuje ruch
+func _ai_make_move() -> void:
+	if game_over:
+		return
+	
+	var move = ai_player.get_next_move(board)
+	
+	if move.is_empty():
+		return
+	
+	var x = move[0]
+	var y = move[1]
+	
+	if make_move(x, y, current_player):
+		update_button_ui(x, y)
+		
+		# Sprawdzenie końca gry
+		var winner = get_winner()
+		if winner != 0:
+			game_over = true
+			get_node("StatusLabel").text = "Player %s WINS!" % ("X" if winner == 1 else "O")
+			return
+		
+		if is_draw():
+			game_over = true
+			get_node("StatusLabel").text = "It's a DRAW!"
+			return
+		
+		# Zmiana gracza
+		current_player = 1
 		update_ui()
 
 # Obsługa reset buttona
