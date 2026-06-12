@@ -4,3 +4,144 @@
 
 [node name="Main scene" type="Node2D" unique_id=637186126]
 script = ExtResource("1_w2twt")
+
+[node name="StatusLabel" type="Label" parent="." unique_id=2051427835]
+offset_left = 49.0
+offset_top = 22.0
+offset_right = 352.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 28
+text = "X's Turn"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=637636817]
+offset_left = 47.0
+offset_top = 78.0
+offset_right = 355.0
+offset_bottom = 386.0
+columns = 3
+
+[node name="Button" type="Button" parent="GridContainer" unique_id=1431666873]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button" unique_id=244756550]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="GridContainer" unique_id=1490617925]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button2" unique_id=464791961]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="GridContainer" unique_id=449375042]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button3" unique_id=1384242698]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button4" type="Button" parent="GridContainer" unique_id=1915611704]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button4" unique_id=1790923714]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button5" type="Button" parent="GridContainer" unique_id=1545113224]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button5" unique_id=208257308]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button6" type="Button" parent="GridContainer" unique_id=1477376787]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button6" unique_id=431068773]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button7" type="Button" parent="GridContainer" unique_id=1271242570]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button7" unique_id=142300443]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button8" type="Button" parent="GridContainer" unique_id=1788071232]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button8" unique_id=1440000105]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button9" type="Button" parent="GridContainer" unique_id=291643085]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Button9" unique_id=1774137527]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetButton" type="Button" parent="." unique_id=-1170399406]
+offset_left = 99.0
+offset_top = 409.0
+offset_right = 299.0
+offset_bottom = 459.0
+theme_override_font_sizes/font_size = 20
+text = "Reset Game"
