@@ -15,10 +15,19 @@ run/main_scene="uid://ulb1vyxc5efd"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundManager="*uid://cnf6305d061pm"
+GameState="*uid://cugm2sy2j77ts"
+
 [display]
 
 window/size/viewport_width=400
 window/size/viewport_height=600
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [physics]
 
