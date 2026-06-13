@@ -17,9 +17,3 @@ func get_next_move(board: Array[Array]) -> Array:
 	# Zwróć losową pustą komórkę
 	var random_index = randi() % empty_cells.size()
 	return empty_cells[random_index]
-
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass

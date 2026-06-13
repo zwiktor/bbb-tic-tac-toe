@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://ulb1vyxc5efd"]
 
 [ext_resource type="Script" uid="uid://cnnmkujj8718m" path="res://scripts/board.gd" id="1_5u3o4"]
+[ext_resource type="Script" uid="uid://danpqxxylivef" path="res://scripts/menu_manager.gd" id="2_6egu1"]
 
 [node name="Main scene" type="Control" unique_id=929944705]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 400.0
 offset_bottom = 600.0
-script = ExtResource("1_5u3o4")
 
 [node name="MenuContainer" type="Control" parent="." unique_id=26246788]
 anchors_preset = 0
 offset_right = 400.0
 offset_bottom = 600.0
+script = ExtResource("2_6egu1")
 
 [node name="TitleLabel" type="Label" parent="MenuContainer" unique_id=3847569]
 layout_mode = 0
@@ -90,6 +91,7 @@ visible = false
 anchors_preset = 0
 offset_right = 400.0
 offset_bottom = 600.0
+script = ExtResource("1_5u3o4")
 
 [node name="StatusLabel" type="Label" parent="GameContainer" unique_id=918491488]
 layout_mode = 0
